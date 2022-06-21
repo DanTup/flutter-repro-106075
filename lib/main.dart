@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -58,7 +59,18 @@ class _MyHomePageState extends State<MyHomePage> {
       // _counter without calling setState(), then the build method would not be
       // called again, and so nothing would appear to happen.
       _counter++;
+
+      getHttp();
     });
+  }
+
+  void getHttp() async {
+    try {
+      var response = await Dio().get('http://localhost:8000/foo.json');
+      print(response); // breakpoint on this line
+    } catch (e) {
+      print(e);
+    }
   }
 
   @override
